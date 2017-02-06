@@ -9,15 +9,22 @@ import os
 
 client = discord.Client()                                       # This is the bot
 
+if not os.path.exists("Logs"):
+    os.makedirs("Logs")
 
 index = ''
 with open("server.txt", "r") as file:
 		for line in file:
+		
+			os.chdir("Logs")
+			
 			mydic = {}											#creates an empty dictionary
 			mydic[line] = ''
 			if line in mydic:
 				while os.path.exists(line+" "+'log'+" "+index+'.txt'):
 					mydic[line] += '1'
+			
+			os.chdir("../")
 
 @client.event
 async def on_message(message):                                  # Do this with the message when you get a message
